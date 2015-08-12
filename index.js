@@ -18,9 +18,10 @@ var realpath = cont(fs.realpath)
 pull(
   glob('**/node_modules/*/.git'),
   paramap(function (gitdir, cb) {
-    var dir = path.relative(process.cwd(), path.resolve(gitdir, '..'))
+    var dir = path.resolve(gitdir, '..')
     var opts = {cwd: dir, encoding: 'utf8'}
     cont.para({
+      dep: function (cb) { cb(null, dir) },
       dir: realpath(dir),
       branch: read(path.join(gitdir, 'HEAD'), 'utf8'),
       dirty: exec('git status --p', opts)
@@ -29,7 +30,8 @@ pull(
   pull.map(function (d) {
     var dirty = d.dirty.split('\n')
     return {
-      dir: d.dir,
+      dep: path.relative(process.cwd(), d.dep),
+      dir: path.relative(process.cwd(), d.dir),
       branch: d.branch.replace(/^.*\//, '').trim(),
       dirty: dirty.map(function (e) {
         var x = /^ M (.+)/.exec(e)
