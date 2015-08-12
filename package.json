@@ -1,7 +1,7 @@
 {
   "name": "check-linked-deps",
   "description": "check if any linked deps are unclean",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/dominictarr/check-linked-deps",
   "repository": {
     "type": "git",
