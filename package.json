@@ -1,6 +1,6 @@
 {
   "name": "check-linked-deps",
-  "description": "",
+  "description": "check if any linked deps are unclean",
   "version": "0.0.0",
   "homepage": "https://github.com/dominictarr/check-linked-deps",
   "repository": {
@@ -16,6 +16,7 @@
     "pull-glob": "~1.0.1"
   },
   "devDependencies": {},
+  "bin": "./index.js",
   "scripts": {
     "prepublish": "npm ls &&  npm test",
     "test": "set -e; for t in test/*.js; do node $t; done"

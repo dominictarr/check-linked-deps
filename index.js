@@ -1,4 +1,4 @@
-
+#! /usr/bin/env node
 
 var pull = require('pull-stream')
 var pfs = require('pull-fs')
